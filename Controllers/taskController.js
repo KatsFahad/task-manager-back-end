@@ -26,7 +26,21 @@ const addNewTask = async (req,res) =>{
     }
 }
 
+const getTaskById = async (req,res) =>{
+    const getTask = await prisma.task.findUnique({
+        where: {
+            id: parseInt(req.params.id)
+        }
+    })
+    if(getTask){
+        res.send(getTask)
+    }else{
+        res.send('No task by that id')
+    }
+}
+
 module.exports = {
     getAllTasks,
-    addNewTask
+    addNewTask,
+    getTaskById
 }
