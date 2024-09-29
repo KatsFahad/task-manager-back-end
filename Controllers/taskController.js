@@ -52,9 +52,27 @@ const deleteById = async (req,res) =>{
     }
 }
 
+const updateTask = async (req, res) =>{
+    const {title} = req.body
+    const task = await prisma.task.update({
+        where: {
+            id: +req.params.id
+        },
+        data:{
+            title
+        }
+    })
+    if(task){
+        res.send('Task Updated')
+    }else{
+        res.send('Failed to update task')
+    }
+}
+
 module.exports = {
     getAllTasks,
     addNewTask,
     getTaskById,
-    deleteById
+    deleteById,
+    updateTask
 }
