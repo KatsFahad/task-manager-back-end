@@ -39,8 +39,22 @@ const getTaskById = async (req,res) =>{
     }
 }
 
+const deleteById = async (req,res) =>{
+    const taskToDelete = await prisma.task.delete({
+        where: {
+            id: parseInt(req.params.id)
+        }
+    })
+    if(taskToDelete){
+        res.send('Task deleted')
+    }else{
+        res.send('Failed to deleted task')
+    }
+}
+
 module.exports = {
     getAllTasks,
     addNewTask,
-    getTaskById
+    getTaskById,
+    deleteById
 }
