@@ -11,6 +11,22 @@ const getAllTasks = async (req, res) =>{
     
 }
 
+const addNewTask = async (req,res) =>{
+    const {title} = req.body
+    if(title){
+        const task = await prisma.task.create({
+            data: {
+                title
+            }
+        })
+        res.send('New task added')
+    }
+    else{
+        res.send('failed to add new task')
+    }
+}
+
 module.exports = {
-    getAllTasks
+    getAllTasks,
+    addNewTask
 }
