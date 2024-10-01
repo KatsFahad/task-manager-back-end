@@ -15,7 +15,7 @@ app.get('/', (req,res)=>{
 
 app.use('/tasks', taskRouter)
 
-const PORT = 4300;
+const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
   console.log(`Listening on http://localhost${PORT}`);
