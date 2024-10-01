@@ -4,7 +4,7 @@ const prisma = new PrismaClient()
 const getAllTasks = async (req, res) =>{
     const tasks = await prisma.task.findMany()
     if(tasks){
-        res.json(tasks)
+        res.send(tasks)
     }else{
         res.send('No tasks found')
     }
@@ -33,7 +33,7 @@ const getTaskById = async (req,res) =>{
         }
     })
     if(getTask){
-        res.json(getTask)
+        res.send(getTask)
     }else{
         res.send('No task by that id')
     }
