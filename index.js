@@ -9,6 +9,10 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(cors());
 
+app.get('/', (req,res)=>{
+  res.send('CRUD OPERATIONS')
+})
+
 app.use('/tasks', taskRouter)
 
 const PORT = 4300;
