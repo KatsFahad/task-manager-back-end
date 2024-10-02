@@ -6,7 +6,7 @@ const getAllTasks = async (req, res) =>{
     if(tasks){
         res.json(tasks)
     }else{
-        res.send('No tasks found')
+        res.json('No tasks found')
     }
     
 }
@@ -19,10 +19,10 @@ const addNewTask = async (req,res) =>{
                 title
             }
         })
-        res.send('New task added')
+        res.json('New task added')
     }
     else{
-        res.send('failed to add new task')
+        res.json('failed to add new task')
     }
 }
 
@@ -35,7 +35,7 @@ const getTaskById = async (req,res) =>{
     if(getTask){
         res.json(getTask)
     }else{
-        res.send('No task by that id')
+        res.json('No task by that id')
     }
 }
 
@@ -46,9 +46,9 @@ const deleteById = async (req,res) =>{
         }
     })
     if(taskToDelete){
-        res.send('Task deleted')
+        res.json('Task deleted')
     }else{
-        res.send('Failed to deleted task')
+        res.json('Failed to deleted task')
     }
 }
 
@@ -63,9 +63,9 @@ const updateTask = async (req, res) =>{
         }
     })
     if(task){
-        res.send('Task Updated')
+        res.json('Task Updated')
     }else{
-        res.send('Failed to update task')
+        res.json('Failed to update task')
     }
 }
 
