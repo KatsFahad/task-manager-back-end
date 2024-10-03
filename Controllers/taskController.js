@@ -68,14 +68,32 @@ const updateTask = async (req, res) =>{
         res.json('Failed to update task')
     }
 }
-    const deleteAllTasks = async (req,res) =>{
-        const tasks = await prisma.task.deleteMany()
-        if(tasks){
-            res.json('All tasks deleted')
-        }else{
-            res.json('failed to delete all tasks')
+    // const deleteAllTasks = async (req,res) =>{
+    //     const tasks = await prisma.task.deleteMany()
+    //     if(tasks){
+    //         res.json('All tasks deleted')
+    //     }else{
+    //         res.json('failed to delete all tasks')
+    //     }
+    // }
+    const deleteAllTasks = async (req, res) => {
+        try {
+          const result = await prisma.task.deleteMany();
+          
+          if (result.count > 0) {
+            // If there were tasks to delete and they were successfully deleted
+            res.status(200).json({ message: 'All tasks deleted successfully' });
+          } else {
+            // No tasks found to delete
+            res.status(404).json({ message: 'No tasks found to delete' });
+          }
+        } catch (error) {
+          // Log the error and send a 500 response
+          console.error('Error deleting tasks:', error);
+          res.status(500).json({ error: 'Failed to delete all tasks' });
         }
-    }
+      };
+      
 
 module.exports = {
     getAllTasks,
