@@ -12,4 +12,6 @@ taskRouter.delete('/:id', taskController.deleteById)
 
 taskRouter.put('/:id', taskController.updateTask)
 
+taskRouter.delete('/', taskController.deleteAllTasks)
+
 module.exports = taskRouter

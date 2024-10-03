@@ -68,11 +68,20 @@ const updateTask = async (req, res) =>{
         res.json('Failed to update task')
     }
 }
+    const deleteAllTasks = async (req,res) =>{
+        const tasks = await prisma.task.deleteMany()
+        if(tasks){
+            res.json('All tasks deleted')
+        }else{
+            res.json('failed to delete all tasks')
+        }
+    }
 
 module.exports = {
     getAllTasks,
     addNewTask,
     getTaskById,
     deleteById,
-    updateTask
+    updateTask,
+    deleteAllTasks
 }
