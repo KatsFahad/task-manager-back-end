@@ -1,4 +1,4 @@
-const {PrismaClient} = require('@prisma/client')
+const { PrismaClient } = require('@prisma/client')
 const prisma  = new PrismaClient()
 
 const getAllUsers = async (req,res) =>{
@@ -11,6 +11,22 @@ const getAllUsers = async (req,res) =>{
     }
 }
 
+const createUser = async (req,res) =>{
+    const {name, email} = req.body
+    if(name && email){
+        const newUser = await prisma.user.create({
+            data:{
+                name,
+                email
+            }
+        })
+        res.json('New user created')
+    }else{
+        res.json('Add name or email')
+    }
+}
+
 module.exports = {
-    getAllUsers
+    getAllUsers,
+    createUser
 }
