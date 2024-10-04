@@ -1,8 +1,8 @@
 const {PrismaClient} = require('@prisma/client')
 const prisma  = new PrismaClient()
 
-const getAllUsers = (req,res) =>{
-    const users = prisma.user.findMany()
+const getAllUsers = async (req,res) =>{
+    const users = await prisma.user.findMany()
 
     if(users){
         res.json(users)
