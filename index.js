@@ -2,6 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const cors = require('cors')
 const taskRouter = require('./Routes/taskRouter')
+const userRouter = require('./Routes/userRouter')
 
 const app = express();
 
@@ -14,6 +15,8 @@ app.get('/', (req,res)=>{
 })
 
 app.use('/tasks', taskRouter)
+
+app.use('/users', userRouter)
 
 const PORT = process.env.PORT;
 
